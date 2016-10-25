@@ -18,16 +18,16 @@ let FireBaseTools = {
 
 
 
-	// registerUser: (user) => {
-	// 	return firebaseAuth.createUserWithEmailAndPassword(user.email, user.password).then(user => {
-	// 		return user;
-	// 	}).catch(error => {
-	// 		return {
-	// 			errorCode: error.code,
-	// 			errorMessage: error.message
-	// 		};
-	// 	});
-	// }
+	registerUser: (user) => {
+		return firebaseAuth.createUserWithEmailAndPassword(user.email, user.password).then(user => {
+			return user;
+		}).catch(error => {
+			return {
+				errorCode: error.code,
+				errorMessage: error.message
+			};
+		});
+	}
 
 }
 

@@ -10,7 +10,8 @@ import UserRegister from './components/user/register';
 export default (
 	<Route path="/" component={App}>
 		<IndexRoute component={HomeIndex} />
-		<Route path="/register" component={UserRegister} />
+		<Route component={UserRegister} path="/register">
+		</Route>
 	</Route>
 
 );
