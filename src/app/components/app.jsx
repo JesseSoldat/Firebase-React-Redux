@@ -1,7 +1,25 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+import {logoutUser} from '../actions/firebase_actions';
 
 class App extends Component {
+
+	constructor(props){
+		super(props);
+
+		this.logOut = this.logOut.bind(this);
+	}
+
+	logOut(){
+		this.props.logoutUser().then(data => {
+			
+		});
+
+	}
+
 	render(){
 		return(
 		<div>
@@ -29,6 +47,17 @@ class App extends Component {
 			</header>
 
 			<div className="container">
+				<ul>
+					<Link to="/login">Login</Link>
+					<br/>
+					<Link to="/register">Register</Link>
+					<br />
+					<Link to="/logout" 
+							onClick={this.logOut}>
+							logout
+					</Link>
+				</ul>
+				
 				{this.props.children}
 			</div>
 
@@ -37,4 +66,16 @@ class App extends Component {
 	}
 }
 
-export default App;
+function mapStateToProps(state){
+	return {
+		currentUser: state.currentUser
+	};
+}
+
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({
+		logoutUser
+	}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

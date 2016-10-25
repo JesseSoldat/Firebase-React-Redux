@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import { FIREBASE_CONFIG } from '../config';
 
 export const firebaseApp = firebase.initializeApp(FIREBASE_CONFIG);
+
 export const firebaseAuth = firebaseApp.auth();
 
 
@@ -27,7 +28,28 @@ let FireBaseTools = {
 				errorMessage: error.message
 			};
 		});
+	},
+
+	loginUser: (user) => {
+		return firebaseAuth.signInWithEmailAndPassword(user.email, user.password).then(user => {
+			return user;
+		}).catch(error => {
+			return {
+				errorCode: error.code,
+				errorMessage: error.message
+			}
+		});
+	},
+
+	logoutUser: () => {
+		return firebaseAuth.signOut().then( () => {
+			return {
+				success: 1,
+				message: 'logout'
+			};
+		});
 	}
+
 
 }
 
