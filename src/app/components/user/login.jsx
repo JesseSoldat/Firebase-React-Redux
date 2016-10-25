@@ -30,7 +30,7 @@ class UserLogin extends Component {
 						message: data.payload.errorMessage
 					})
 				} else {
-					browserHistory.push('/');
+					browserHistory.push('/profile');
 				}
 		})
 	}

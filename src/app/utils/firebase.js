@@ -41,6 +41,17 @@ let FireBaseTools = {
 		});
 	},
 
+	fetchUser: () => {
+		return new Promise((resolve, reject) => {
+			const unsub = firebaseAuth.onAuthStateChanged(user => {
+				unsub();
+				resolve(user);
+			}, error => {
+				reject(error)
+			})
+		})
+	},
+
 	logoutUser: () => {
 		return firebaseAuth.signOut().then( () => {
 			return {

@@ -3,19 +3,24 @@ import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {logoutUser} from '../actions/firebase_actions';
+import {logoutUser, fetchUser} from '../actions/firebase_actions';
 
 class App extends Component {
 
 	constructor(props){
 		super(props);
+		// console.log(props);
 
 		this.logOut = this.logOut.bind(this);
 	}
 
+	componentWillMount() {
+		
+	}
+
 	logOut(){
 		this.props.logoutUser().then(data => {
-			
+			this.props.fetchUser();
 		});
 
 	}
@@ -57,7 +62,6 @@ class App extends Component {
 							logout
 					</Link>
 				</ul>
-				
 				{this.props.children}
 			</div>
 
@@ -74,7 +78,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
-		logoutUser
+		logoutUser,
+		fetchUser
 	}, dispatch);
 }
 

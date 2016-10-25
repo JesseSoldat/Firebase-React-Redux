@@ -7,6 +7,7 @@ import HomeIndex from './components/index_home';
 import UserRegister from './components/user/register';
 import UserLogin from './components/user/login';
 import UserLogout from './components/user/logout';
+import UserProfile from './components/user/profile';
 
 
 export default (
@@ -15,7 +16,7 @@ export default (
 		<Route path="/register" component={UserRegister}  />
 		<Route path="/login" component={UserLogin} />
 		<Route path="/logout" component={UserLogout} />
-
+		<Route path="/profile" component={UserProfile} />
 	</Route>
 
 );

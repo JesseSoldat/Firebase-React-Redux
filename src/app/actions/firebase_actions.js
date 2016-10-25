@@ -3,6 +3,7 @@ import FireBaseTools from '../utils/firebase';
 import {
 	REGISTER_FIREBASE_USER,
 	LOGIN_FIREBASE_USER,
+  FETCH_FIREBASE_USER,
   LOGOUT_FIREBASE_USER
 } from './types';
 
@@ -19,6 +20,14 @@ export function loginUser(user){
 	const request = FireBaseTools.loginUser(user);
 	return {
 		type: LOGIN_FIREBASE_USER,
+		payload: request
+	}
+}
+
+export function fetchUser(){
+	const request = FireBaseTools.fetchUser();
+	return {
+		type: FETCH_FIREBASE_USER,
 		payload: request
 	}
 }
