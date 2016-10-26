@@ -20,7 +20,7 @@ class App extends Component {
 
 	logOut(){
 		this.props.logoutUser().then(data => {
-			this.props.fetchUser();
+			
 		});
 
 	}
@@ -53,6 +53,8 @@ class App extends Component {
 
 			<div className="container">
 				<ul>
+					<Link to="/profile">Profile</Link>
+					<br/>
 					<Link to="/login">Login</Link>
 					<br/>
 					<Link to="/register">Register</Link>

@@ -41,6 +41,17 @@ let FireBaseTools = {
 		});
 	},
 
+	updateUserProfile: (u) => {
+		return firebaseAuth.currentUser.updateProfile(u).then( () => {
+			return firebaseAuth.currentUser;
+		}, error => {
+			return {
+				errorCode: error.code,
+				errorMessage: error.message
+			}
+		})
+	},
+
 	fetchUser: () => {
 		return new Promise((resolve, reject) => {
 			const unsub = firebaseAuth.onAuthStateChanged(user => {
