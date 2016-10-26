@@ -3,8 +3,9 @@ import FireBaseTools from '../utils/firebase';
 import {
 	REGISTER_FIREBASE_USER,
 	LOGIN_FIREBASE_USER,
-	UPDATE_FIREBASE_USER,
   FETCH_FIREBASE_USER,
+	UPDATE_FIREBASE_USER,
+  CHANGE_FIREBASE_USER_PASSWORD,
   LOGOUT_FIREBASE_USER
 } from './types';
 
@@ -37,6 +38,14 @@ export function updateUser(user){
 	const request = FireBaseTools.updateUserProfile(user);
 	return {
 		type: UPDATE_FIREBASE_USER,
+		payload: request
+	}
+}
+
+export function changePassword(newPassword){
+	const request = FireBaseTools.changePassword(newPassword);
+	return {
+		type: CHANGE_FIREBASE_USER_PASSWORD,
 		payload: request
 	}
 }

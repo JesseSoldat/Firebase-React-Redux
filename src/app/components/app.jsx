@@ -15,8 +15,10 @@ class App extends Component {
 	}
 
 	componentWillMount() {
-		
+		this.props.fetchUser();
 	}
+
+	
 
 	logOut(){
 		this.props.logoutUser().then(data => {
@@ -52,17 +54,25 @@ class App extends Component {
 			</header>
 
 			<div className="container">
-				<ul>
-					<Link to="/profile">Profile</Link>
-					<br/>
-					<Link to="/login">Login</Link>
-					<br/>
-					<Link to="/register">Register</Link>
-					<br />
-					<Link to="/logout" 
+				<ul id="ulTemp">
+					<li><Link to="/profile">Profile
+						</Link>
+					</li>
+					<li>
+						<Link to="/login">
+							Login
+						</Link>
+					</li>
+					<li>
+						<Link to="/register">Register
+						</Link>
+					</li>
+					<li>
+						<Link to="/logout" 
 							onClick={this.logOut}>
 							logout
-					</Link>
+						</Link>
+					</li>
 				</ul>
 				{this.props.children}
 			</div>

@@ -16,9 +16,6 @@ let FireBaseTools = {
 	// 			default:
 	// 	}
 	// }
-
-
-
 	registerUser: (user) => {
 		return firebaseAuth.createUserWithEmailAndPassword(user.email, user.password).then(user => {
 			return user;
@@ -69,6 +66,17 @@ let FireBaseTools = {
 				success: 1,
 				message: 'logout'
 			};
+		});
+	},
+
+	changePassword: (newPassword) => {
+		return firebaseAuth.currentUser.updatePassword(newPassword).then(user => {
+			return user;
+		}, error => {
+			return {
+				errorCode: error.code,
+				errorMessage: error.message
+			}
 		});
 	}
 

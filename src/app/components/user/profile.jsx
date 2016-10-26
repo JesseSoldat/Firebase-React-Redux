@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchUser, updateUser} from '../../actions/firebase_actions';
+import ChangePassword from './change_password';
 
 class UserProfile extends Component {
 	constructor(props){
@@ -13,6 +14,8 @@ class UserProfile extends Component {
 
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
+
+
 
 	onFormSubmit(e){
 		e.preventDefault();
@@ -61,6 +64,8 @@ class UserProfile extends Component {
 					Update
 				</button>
 			</form>
+			<br/><br/>
+			<ChangePassword/>
 		</div>
 		)
 	}
