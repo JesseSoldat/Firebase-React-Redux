@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {browserHistory, Link} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {loginUser} from '../../actions/firebase_actions';
+import {loginUser, fetchUser, loginWithProvider} from '../../actions/firebase_actions';
 
 class UserLogin extends Component {
 
@@ -10,11 +10,21 @@ class UserLogin extends Component {
 		super(props);
 
 		this.onFormSubmit = this.onFormSubmit.bind(this);
-
+		this.loginWithProvider = this.loginWithProvider.bind(this);
 		this.state = {
 			message: ''
 		};
 	}
+
+  loginWithProvider(provider) {
+    this.props.loginWithProvider(provider).then(data => {
+      if (data.payload.errorCode)
+        this.setState({ message: data.payload.errorMessage })
+      else
+        browserHistory.push('/profile');
+    });
+  
+  }
 
 	onFormSubmit(e){
 		e.preventDefault();
@@ -59,6 +69,36 @@ class UserLogin extends Component {
 				<button type="submit" className="btn btn-default btn-block">
 					Login
 				</button>
+				<br/>
+				<h5>
+					<Link to="#">Forgot Password?</Link>
+				</h5>
+				<div className="col-md-4">
+				<h4>Login with</h4>
+					<a href="#" className="btn btn-block btn-social btn-facebook" onClick={() => {
+					this.loginWithProvider("facebook")
+						}} data-provider="facebook">
+					facebook
+					</a>
+					<a href="#" className="btn btn-block btn-social btn-twitter" onClick={() => {
+						this.loginWithProvider("twitter")
+					}} data-provider="twitter">
+						Twitter
+					</a>
+
+					<a href="#" className="btn btn-block btn-social btn-google" onClick={ () => {
+						this.loginWithProvider('google')
+					}} data-provider="google">
+						Google
+					</a>
+
+					<a href="#" className="btn btn-block btn-social btn-github" onClick={() => {
+						this.loginWithProvider("github")
+					}} data-provider="github">
+						Github
+					</a>
+				</div>
+
 			</form>
 		</div>
 		)
@@ -73,7 +113,9 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
-		loginUser
+		loginUser,
+		loginWithProvider,
+		fetchUser
 	}, dispatch);
 }
 

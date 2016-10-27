@@ -1,11 +1,11 @@
 import {
+  LOGIN_WITH_PROVIDER_FIREBASE,
   FETCH_FIREBASE_USER,
   UPDATE_FIREBASE_USER,
   CHANGE_FIREBASE_USER_PASSWORD,
 	REGISTER_FIREBASE_USER,
   LOGIN_FIREBASE_USER,
   LOGOUT_FIREBASE_USER,
-
 
 } from '../actions/types';
 
@@ -16,6 +16,10 @@ export default function (state = {
   }
 }, action){
 	switch (action.type) {
+    case LOGIN_WITH_PROVIDER_FIREBASE:
+      console.log(action.payload, state);
+      return action.payload;
+
 		case FETCH_FIREBASE_USER:
       state = {
         ...state,

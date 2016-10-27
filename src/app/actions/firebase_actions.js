@@ -1,6 +1,7 @@
 import FireBaseTools from '../utils/firebase';
 
 import {
+	LOGIN_WITH_PROVIDER_FIREBASE,
 	REGISTER_FIREBASE_USER,
 	LOGIN_FIREBASE_USER,
   FETCH_FIREBASE_USER,
@@ -9,6 +10,13 @@ import {
   LOGOUT_FIREBASE_USER
 } from './types';
 
+export function loginWithProvider(provider){
+	const request = FireBaseTools.loginWithProvider(provider);
+	return {
+		type: LOGIN_WITH_PROVIDER_FIREBASE,
+		payload: request
+	}
+}
 
 export function registerUser(user){
 	const request = FireBaseTools.registerUser(user);
