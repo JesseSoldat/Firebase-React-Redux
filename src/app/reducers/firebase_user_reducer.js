@@ -53,7 +53,8 @@ export default function (state = {
       state = {
         ...state,
         email: action.payload.email,
-        displayName: action.payload.displayName
+        displayName: action.payload.displayName,
+        uid: action.payload.uid
       
       }
   		console.log(action.payload, state);
@@ -63,7 +64,8 @@ export default function (state = {
       state = {
         ...state,
         email: action.payload.email,
-        displayName: action.payload.displayName
+        displayName: action.payload.displayName,
+        uid: action.payload.uid
         
       }
       console.log(action.payload, state);

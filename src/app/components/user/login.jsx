@@ -71,7 +71,7 @@ class UserLogin extends Component {
 				</button>
 				<br/>
 				<h5>
-					<Link to="#">Forgot Password?</Link>
+					<Link to="/reset">Forgot Password?</Link>
 				</h5>
 				<div className="col-md-4">
 				<h4>Login with</h4>

@@ -16,7 +16,7 @@ class ResetPassword extends Component {
 	onFormSubmit(e){
 		e.preventDefault();
 		let email = this.refs.email.value;
-		console.log(email);
+		
 		this.props.resetPasswordEmail(email).then(data => {
 			if(data.payload.errorCode){
 				this.setState({

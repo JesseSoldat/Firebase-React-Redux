@@ -10,6 +10,8 @@ import routes from './routes';
 
 import 'bootstrap-social';
 
+// for bundling your styles
+import './bundle.scss';
 console.log("Its alive");
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);

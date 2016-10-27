@@ -9,21 +9,45 @@ class App extends Component {
 
 	constructor(props){
 		super(props);
+		this.props.fetchUser();
 		// console.log(props);
 
 		this.logOut = this.logOut.bind(this);
 	}
 
-	componentWillMount() {
-		this.props.fetchUser();
-	}
-
-	
-
 	logOut(){
 		this.props.logoutUser().then(data => {
 			
 		});
+	}
+
+	renderUserMenu(currentUser){
+		if(currentUser && currentUser.uid) {
+			return(
+			<li className="dropdown">
+				<a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
+				aria-haspopup="true" aria-expanded="false"
+				>
+					{currentUser.email}
+					<span className="caret"></span>
+				</a>
+				<ul className="dropdown-menu">
+					<li><Link to="/profile">Profile</Link>
+					</li>
+					<li role="separator" className="divider">
+					</li>
+					<li><Link to="/logout" onClick={this.logOut}>Logout</Link>
+					</li>
+				</ul>
+			</li>
+			)
+		} else {
+			return [
+				<li key={1}><Link to="/login">Login</Link></li>,
+				<li key={2}><Link to="/register">Register</Link></li>
+			]
+
+		}
 
 	}
 
@@ -49,36 +73,14 @@ class App extends Component {
 						<ul className="nav navbar-nav">
 							<li><Link to="/">Home</Link></li>
 						</ul>
+						<ul className="nav navbar-nav navbar-right">
+							{this.renderUserMenu(this.props.currentUser)}
+						</ul>
 					</nav>
 				</div>
 			</header>
 
 			<div className="container">
-				<ul id="ulTemp">
-					<li><Link to="/profile">Profile
-						</Link>
-					</li>
-					<li>
-						<Link to="/login">
-							Login
-						</Link>
-					</li>
-					<li>
-						<Link to="/register">Register
-						</Link>
-					</li>
-					<li>
-						<Link to="/reset"> 
-							Reset Pasword
-						</Link>
-					</li>
-					<li>
-						<Link to="/logout" 
-							onClick={this.logOut}>
-							logout
-						</Link>
-					</li>
-				</ul>
 				{this.props.children}
 			</div>
 
