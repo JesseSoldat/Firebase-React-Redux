@@ -6,6 +6,7 @@ import {
 	REGISTER_FIREBASE_USER,
   LOGIN_FIREBASE_USER,
   LOGOUT_FIREBASE_USER,
+  FIREBASE_PASSWORD_RESET_EMAIL
 
 } from '../actions/types';
 
@@ -67,6 +68,11 @@ export default function (state = {
       }
       console.log(action.payload, state);
 			return action.payload;
+
+    case FIREBASE_PASSWORD_RESET_EMAIL:
+      console.log(action.payload, state);
+      
+      return action.payload;
 
   	case LOGOUT_FIREBASE_USER:
       state = {

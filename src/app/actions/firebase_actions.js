@@ -7,6 +7,7 @@ import {
   FETCH_FIREBASE_USER,
 	UPDATE_FIREBASE_USER,
   CHANGE_FIREBASE_USER_PASSWORD,
+  FIREBASE_PASSWORD_RESET_EMAIL,
   LOGOUT_FIREBASE_USER
 } from './types';
 
@@ -55,6 +56,14 @@ export function changePassword(newPassword){
 	return {
 		type: CHANGE_FIREBASE_USER_PASSWORD,
 		payload: request
+	}
+}
+
+export function resetPasswordEmail(email){
+	const request = FireBaseTools.resetPasswordEmail(email);
+	return {
+		type: FIREBASE_PASSWORD_RESET_EMAIL,
+    payload: request 
 	}
 }
 

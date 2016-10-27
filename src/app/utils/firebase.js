@@ -73,6 +73,20 @@ let FireBaseTools = {
 		})
 	},
 
+	resetPasswordEmail: (email) => {
+		return firebaseAuth.sendPasswordResetEmail(email).then( () => {
+			return {
+				message: 'Email sent'
+			}
+		}, error => {
+			return {
+				errorCode: error.code,
+				errorMessage: error.message
+			}
+			
+		});
+	},
+
 	fetchUser: () => {
 		return new Promise((resolve, reject) => {
 			const unsub = firebaseAuth.onAuthStateChanged(user => {

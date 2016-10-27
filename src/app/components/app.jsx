@@ -68,6 +68,11 @@ class App extends Component {
 						</Link>
 					</li>
 					<li>
+						<Link to="/reset"> 
+							Reset Pasword
+						</Link>
+					</li>
+					<li>
 						<Link to="/logout" 
 							onClick={this.logOut}>
 							logout
