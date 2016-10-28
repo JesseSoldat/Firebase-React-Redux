@@ -11,12 +11,16 @@ function randomNumber(){
 const INITIALSTATE = {
 	stars: randomNumber(),
 	doneStatus: null,
-	selectedNumbers: []
+	selectedNumbers: [],
+	correct: null
 	
 
 }
 
 export default function(state = INITIALSTATE, action){
+	let selectedNumbers = [];
+	let indexOfNumber;
+
 	switch(action.type){
 		case CHANGE_NUMBER_OF_STARS:
 			return {
@@ -24,13 +28,21 @@ export default function(state = INITIALSTATE, action){
 				stars: randomNumber()
 			};
 		case SELECT_NUMBER:
+			indexOfNumber = state.selectedNumbers.indexOf(action.payload);
+			
+			if(indexOfNumber < 0) {
+				selectedNumbers.push(action.payload);
+				// console.log(selectedNumbers);
+			}
+			
 			return {
 				...state,
-				selectedNumbers: state.selectedNumbers.concat(action.payload)
+				selectedNumbers: state.selectedNumbers.concat(selectedNumbers)
+				
 			};
 		case UNSELECT_NUMBER:
-			let selectedNumbers = state.selectedNumbers;
-			let indexOfNumber = selectedNumbers.indexOf(action.payload);
+			selectedNumbers = state.selectedNumbers;
+			indexOfNumber = selectedNumbers.indexOf(action.payload);
 			selectedNumbers.splice(indexOfNumber, 1);
 			return {
 				...state,
