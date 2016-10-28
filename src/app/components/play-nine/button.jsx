@@ -1,4 +1,8 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
+//Actions
+import {ChangeStars} from '../../actions/play_nine_actions';
 
 class Button extends Component {
 
@@ -39,7 +43,8 @@ class Button extends Component {
 		<div id="button-frame">
 			{button}
 			<br/><br/>
-			<button className="btn btn-warning btn-xs">
+			<button className="btn btn-warning btn-xs"
+			onClick={this.props.ChangeStars}>
 				<span className="glyphicon glyphicon-refresh">
 				</span>
 			</button>
@@ -48,4 +53,11 @@ class Button extends Component {
 	}
 }
 
-export default Button;
+function mapStateToProps(state){
+	return {
+		playnine: state.playnine
+	};
+
+}
+
+export default connect(mapStateToProps, {ChangeStars})(Button);

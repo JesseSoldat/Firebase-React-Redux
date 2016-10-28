@@ -1,5 +1,6 @@
 import {
 	CHANGE_NUMBER_OF_STARS,
+	SELECT_NUMBER
 } from '../actions/types';
 
 function randomNumber(){
@@ -7,7 +8,10 @@ function randomNumber(){
 }
 
 const INITIALSTATE = {
-	stars: randomNumber()
+	stars: randomNumber(),
+	doneStatus: null,
+	selectedNumbers: []
+
 }
 
 export default function(state = INITIALSTATE, action){
@@ -16,6 +20,12 @@ export default function(state = INITIALSTATE, action){
 			return {
 				...state,
 				stars: randomNumber()
+			};
+		case SELECT_NUMBER:
+			console.log(action.payload);
+			return {
+				...state,
+				selectedNumbers: state.selectedNumbers.concat(action.payload)
 			};
 		default:
 			return state;

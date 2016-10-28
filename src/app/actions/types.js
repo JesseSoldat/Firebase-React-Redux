@@ -27,3 +27,5 @@ export const LIKE_BUTTON_DECREMENT = 'LIKE_BUTTON_DECREMENT';
 //Play Nine --------------------------------
 
 export const 	CHANGE_NUMBER_OF_STARS = 'CHANGE_NUMBER_OF_STARS';
+
+export const SELECT_NUMBER = 'SELECT_NUMBER';

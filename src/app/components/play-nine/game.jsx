@@ -20,7 +20,15 @@ class Game extends Component {
 
 	render(){
 		let numberOfStars = this.props.playnine.stars;
-		console.log(numberOfStars);
+		let doneStatus = this.props.playnine.doneStatus;
+		let bottomFrame;
+
+		if(doneStatus) {
+			
+		} else {
+			bottomFrame = <Numbers />
+		}
+	
 		return (
 		<div>
 			<h2>Play Nine</h2>
@@ -31,6 +39,7 @@ class Game extends Component {
 
 				<Answers />
 			</div>
+			{bottomFrame}
 		</div>
 		)
 	}
