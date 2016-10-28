@@ -1,6 +1,7 @@
 import {
 	CHANGE_NUMBER_OF_STARS,
-	SELECT_NUMBER
+	SELECT_NUMBER,
+	UNSELECT_NUMBER
 } from './types';
 
 export function ChangeStars(){
@@ -17,4 +18,10 @@ export function SelectNumber(number){
 	}
 }
 
+export function UnSelectNumber(number){
+	return {
+		type: UNSELECT_NUMBER,
+		payload: number
+	}
+}
 

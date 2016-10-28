@@ -10,11 +10,13 @@ class Numbers extends Component {
 	render(){
 		let numbers = [];
 		let className;
-		let selectNumber;
+		let selectedNumbers = this.props.playnine.selectedNumbers;
 
 		for(let i = 1; i <= 9; i++){
+			className = "number selected-" + (selectedNumbers.indexOf(i) >= 0);
+
 			numbers.push(
-				<div key={i} className="number" 
+				<div key={i} className={className}
 				onClick={() => this.props.SelectNumber(i)}>
 					{i}
 				</div>
@@ -24,9 +26,7 @@ class Numbers extends Component {
 		return(
 			<div id="numbers-frame">
 				<div className="well">
-					{this.props.playnine.selectedNumbers}
 					{numbers}
-					
 				</div>
 			</div>
 		);
