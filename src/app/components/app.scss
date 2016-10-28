@@ -1,4 +1,36 @@
+#stars-frame .well, #answer-frame .well {
+	height: 150px;
+}
 
-// body {
-// 	background-color: red;
-// }
+#stars-frame .glyphicon {
+	margin: 0.3em;
+	font-size: 1.75em;
+}
+
+#stars-frame {
+	width: 40%;
+	float: left;
+}
+
+#button-frame {
+	width: 20%;
+	float: left;
+	text-align: center;
+	margin-top: 50px;
+}
+
+#answer-frame {
+	width: 40%;
+	float: left;
+}
+
+#numbers-frame .number, #answer-frame .well span {
+	display: inline-block;
+	margin: 0.5 em;
+	width: 30px;
+	background-color: #bbb;
+	text-align: center;
+	font-size: 22px;
+	border-radius: 50%;
+	cursor: pointer;
+}

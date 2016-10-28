@@ -1,3 +1,6 @@
+
+//Firebase --------------------------------
+
 export const LOGIN_WITH_PROVIDER_FIREBASE = 'LOGIN_WITH_PROVIDER_FIREBASE';
 
 export const
@@ -15,6 +18,12 @@ export const CHANGE_FIREBASE_USER_PASSWORD = 'CHANGE_FIREBASE_USER_PASSWORD';
 
 export const LOGOUT_FIREBASE_USER = 'LOGOUT_FIREBASE_USER';
 
+
+//Like Button --------------------------------
 export const LIKE_BUTTON_INCREMENT = 'LIKE_BUTTON_INCREMENT';
 
 export const LIKE_BUTTON_DECREMENT = 'LIKE_BUTTON_DECREMENT';
+
+//Play Nine --------------------------------
+
+export const 	CHANGE_NUMBER_OF_STARS = 'CHANGE_NUMBER_OF_STARS';

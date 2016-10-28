@@ -36,6 +36,10 @@ class App extends Component {
 					</li>
 					<li role="separator" className="divider">
 					</li>
+					<li><Link to="/play-nine">Play Nine</Link>
+					</li>
+					<li role="separator" className="divider">
+					</li>
 					<li><Link to="/logout" onClick={this.logOut}>Logout</Link>
 					</li>
 				</ul>

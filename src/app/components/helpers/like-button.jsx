@@ -17,14 +17,11 @@ class LikeButton extends Component {
 	}
 }
 
-
 function mapStateToProps(state){
 	return {
 		counter: state.counter
 	};
 
 }
-
-
 
 export default connect(mapStateToProps, {like, dislike})(LikeButton);
