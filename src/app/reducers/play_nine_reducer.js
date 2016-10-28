@@ -1,7 +1,8 @@
 import {
 	CHANGE_NUMBER_OF_STARS,
 	SELECT_NUMBER,
-	UNSELECT_NUMBER
+	UNSELECT_NUMBER,
+	CHECK_ANSWER
 } from '../actions/types';
 
 function randomNumber(){
@@ -12,7 +13,8 @@ const INITIALSTATE = {
 	stars: randomNumber(),
 	doneStatus: null,
 	selectedNumbers: [],
-	correct: null
+	correct: null,
+	redraws: 5
 	
 
 }
@@ -22,11 +24,17 @@ export default function(state = INITIALSTATE, action){
 	let indexOfNumber;
 
 	switch(action.type){
+
 		case CHANGE_NUMBER_OF_STARS:
 			return {
 				...state,
-				stars: randomNumber()
+				stars: randomNumber(),
+				correct: null,
+				selectedNumbers: [],
+				redraws: state.redraws -1
+
 			};
+
 		case SELECT_NUMBER:
 			indexOfNumber = state.selectedNumbers.indexOf(action.payload);
 			
@@ -37,17 +45,29 @@ export default function(state = INITIALSTATE, action){
 			
 			return {
 				...state,
-				selectedNumbers: state.selectedNumbers.concat(selectedNumbers)
+				selectedNumbers: state.selectedNumbers.concat(selectedNumbers),
+				correct: null
 				
 			};
+
 		case UNSELECT_NUMBER:
 			selectedNumbers = state.selectedNumbers;
 			indexOfNumber = selectedNumbers.indexOf(action.payload);
 			selectedNumbers.splice(indexOfNumber, 1);
 			return {
 				...state,
-				selectedNumbers: selectedNumbers
-			}
+				selectedNumbers: selectedNumbers,
+				correct: null
+			};
+
+		case CHECK_ANSWER:
+			let sum = state.selectedNumbers.reduce( (p ,n) => p + n);
+			let correct = state.stars === sum;
+			return {
+				...state,
+				correct: correct
+			};
+
 		default:
 			return state;
 	}
