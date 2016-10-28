@@ -22,13 +22,6 @@ export default function (state = {
       return action.payload;
 
 		case FETCH_FIREBASE_USER:
-      state = {
-        ...state,
-        email: action.payload.email,
-        displayName: action.payload.displayName
-      
-      }
-			console.log(action.payload, state);
       return action.payload;
 
     case UPDATE_FIREBASE_USER:

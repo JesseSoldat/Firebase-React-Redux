@@ -74,3 +74,16 @@ export function logoutUser(user){
 		payload: request
 	}
 }
+
+
+export function like(){
+	return {
+		type: LIKE_BUTTON_INCREMENT,
+	}
+}
+
+export function dislike(){
+	return {
+		type: LIKE_BUTTON_DECREMENT,
+	}
+}
