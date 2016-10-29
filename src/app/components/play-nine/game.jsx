@@ -7,6 +7,7 @@ import Stars from './stars';
 import Button from './button';
 import Answers from './answers';
 import Numbers from './numbers';
+import Done from './done';
 
 //Actions
 import {ChangeStars} from '../../actions/play_nine_actions';
@@ -17,14 +18,14 @@ class Game extends Component {
 		super(props)
 	}
 
-
 	render(){
 		let numberOfStars = this.props.playnine.stars;
 		let doneStatus = this.props.playnine.doneStatus;
 		let bottomFrame;
 
 		if(doneStatus) {
-			
+			bottomFrame = <Done doneStatus={doneStatus}
+			/>
 		} else {
 			bottomFrame = <Numbers />
 		}
@@ -33,6 +34,7 @@ class Game extends Component {
 		<div>
 			<h2>Play Nine</h2>
 			<div className="clearfix">
+	
 				<Stars numberOfStars={numberOfStars}/>
 
 				<Button />

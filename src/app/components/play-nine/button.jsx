@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 //Actions
-import {ChangeStars, CheckAnswer} from '../../actions/play_nine_actions';
+import {ChangeStars, CheckAnswer, AcceptAnswer} from '../../actions/play_nine_actions';
 
 class Button extends Component {
 
@@ -15,7 +15,8 @@ class Button extends Component {
 			case true:
 				button =(
 				<button className="btn btn-success btn-lg">
-					<span className="glyphicon glyphicon-ok">
+					<span className="glyphicon glyphicon-ok"
+						onClick={this.props.AcceptAnswer}>
 					</span>
 				</button>
 				);
@@ -66,4 +67,4 @@ function mapStateToProps(state){
 
 }
 
-export default connect(mapStateToProps, {ChangeStars, CheckAnswer})(Button);
+export default connect(mapStateToProps, {ChangeStars, AcceptAnswer, CheckAnswer})(Button);

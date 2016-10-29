@@ -2,7 +2,8 @@ import {
 	CHANGE_NUMBER_OF_STARS,
 	SELECT_NUMBER,
 	UNSELECT_NUMBER,
-	CHECK_ANSWER
+	CHECK_ANSWER,
+	ACCEPT_ANSWER
 } from '../actions/types';
 
 function randomNumber(){
@@ -14,14 +15,17 @@ const INITIALSTATE = {
 	doneStatus: null,
 	selectedNumbers: [],
 	correct: null,
-	redraws: 5
+	redraws: 5,
+	usedNumbers: []
 	
-
 }
 
 export default function(state = INITIALSTATE, action){
 	let selectedNumbers = [];
 	let indexOfNumber;
+	let indexOfUsed; 
+	let usedNumbers = [];
+	let stars;
 
 	switch(action.type){
 
@@ -37,10 +41,12 @@ export default function(state = INITIALSTATE, action){
 
 		case SELECT_NUMBER:
 			indexOfNumber = state.selectedNumbers.indexOf(action.payload);
+			indexOfUsed = state.usedNumbers.indexOf(action.payload);
 			
-			if(indexOfNumber < 0) {
+			
+			if(indexOfNumber < 0 && indexOfUsed < 0) {
 				selectedNumbers.push(action.payload);
-				// console.log(selectedNumbers);
+			
 			}
 			
 			return {
@@ -66,6 +72,75 @@ export default function(state = INITIALSTATE, action){
 			return {
 				...state,
 				correct: correct
+			};
+
+
+
+		case ACCEPT_ANSWER:
+
+			function possibleCombinationSum(arr, n) {
+				console.log('possibleCombinationSum')
+				;
+			  if (arr.indexOf(n) >= 0) { return true; }
+			  if (arr[0] > n) { return false; }
+			  if (arr[arr.length - 1] > n) {
+			    arr.pop();
+			    return possibleCombinationSum(arr, n);
+			  }
+			  var listSize = arr.length, combinationsCount = (1 << listSize)
+			  for (var i = 1; i < combinationsCount ; i++ ) {
+			    var combinationSum = 0;
+			    for (var j=0 ; j < listSize ; j++) {
+			      if (i & (1 << j)) { combinationSum += arr[j]; }
+			    }
+			    if (n === combinationSum) { return true; }
+			  }
+			  return false;
+			}
+
+			function possibleSolution(){
+				let possibleNumbers = [];
+				let stars = state.stars;
+		
+
+				for(let i = 1; i <= 9; i++){
+					if(state.usedNumbers.indexOf(i) < 0) {
+						possibleNumbers.push(i);
+					}
+				}
+
+
+				console.log('Used:',usedNumbers);
+
+				console.log('Possible:', possibleNumbers);
+
+				console.log('Stars', stars);
+
+				return possibleCombinationSum(possibleNumbers, stars);
+
+			}
+
+			function updateDoneStatus(){
+				if(state.usedNumbers.length === 9){
+					return 'You Win!';
+				}
+				if(state.redraws === 0 && !possibleSolution()){
+					return 'Game Over!';
+				}
+				return null;
+			}
+			
+			usedNumbers = state.usedNumbers.concat(state.selectedNumbers);
+			
+			return {
+				...state,
+				selectedNumbers: [],
+				usedNumbers: usedNumbers,
+				correct: null,
+				stars: randomNumber(),
+				doneStatus: updateDoneStatus()
+				
+
 			};
 
 		default:

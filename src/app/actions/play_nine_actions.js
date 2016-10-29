@@ -2,7 +2,9 @@ import {
 	CHANGE_NUMBER_OF_STARS,
 	SELECT_NUMBER,
 	UNSELECT_NUMBER,
-	CHECK_ANSWER
+	CHECK_ANSWER,
+	ACCEPT_ANSWER,
+	CHECK_GAME_STATE
 } from './types';
 
 export function ChangeStars(){
@@ -32,4 +34,12 @@ export function CheckAnswer(){
 	
 	}
 }
+
+export function AcceptAnswer(){
+	return {
+		type: ACCEPT_ANSWER
+	}
+}
+
+
 
