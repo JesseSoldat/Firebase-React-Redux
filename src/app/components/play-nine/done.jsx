@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {ChangeStars} from '../../actions/play_nine_actions';
+import {Restart} from '../../actions/play_nine_actions';
 
 class Done extends Component {
 	render(){
@@ -8,7 +8,7 @@ class Done extends Component {
 		<div className="well text-center">
 			<h2>{this.props.playnine.doneStatus}</h2>
 			<button className="btn btn-default"
-				onClick={this.props.ChangeStars}>
+				onClick={this.props.Restart}>
 				Play Again
 			</button>
 		</div>
@@ -22,4 +22,4 @@ function mapStateToProps(state){
 	}
 }
 
-export default connect(mapStateToProps, {ChangeStars})(Done);
+export default connect(mapStateToProps, {Restart})(Done);

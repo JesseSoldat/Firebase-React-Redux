@@ -3,7 +3,9 @@ import {
 	SELECT_NUMBER,
 	UNSELECT_NUMBER,
 	CHECK_ANSWER,
-	ACCEPT_ANSWER
+	ACCEPT_ANSWER,
+	CHECK_GAME_OVER,
+	RESTART
 } from '../actions/types';
 
 function randomNumber(){
@@ -37,6 +39,17 @@ export default function(state = INITIALSTATE, action){
 				selectedNumbers: [],
 				redraws: state.redraws -1
 
+			};
+
+		case RESTART:
+			return {
+				...state,
+				stars: randomNumber(),
+				doneStatus: null,
+				selectedNumbers: [],
+				correct: null,
+				redraws: 5,
+				usedNumbers: []
 			};
 
 		case SELECT_NUMBER:
@@ -78,57 +91,51 @@ export default function(state = INITIALSTATE, action){
 
 		case ACCEPT_ANSWER:
 
-			function possibleCombinationSum(arr, n) {
-				console.log('possibleCombinationSum')
-				;
-			  if (arr.indexOf(n) >= 0) { return true; }
-			  if (arr[0] > n) { return false; }
-			  if (arr[arr.length - 1] > n) {
-			    arr.pop();
-			    return possibleCombinationSum(arr, n);
-			  }
-			  var listSize = arr.length, combinationsCount = (1 << listSize)
-			  for (var i = 1; i < combinationsCount ; i++ ) {
-			    var combinationSum = 0;
-			    for (var j=0 ; j < listSize ; j++) {
-			      if (i & (1 << j)) { combinationSum += arr[j]; }
-			    }
-			    if (n === combinationSum) { return true; }
-			  }
-			  return false;
-			}
+			// function possibleCombinationSum(arr, n) {
+			// 	console.log('possibleCombinationSum')
+			// 	;
+			//   if (arr.indexOf(n) >= 0) { return true; }
+			//   if (arr[0] > n) { return false; }
+			//   if (arr[arr.length - 1] > n) {
+			//     arr.pop();
+			//     return possibleCombinationSum(arr, n);
+			//   }
+			//   var listSize = arr.length, combinationsCount = (1 << listSize)
+			//   for (var i = 1; i < combinationsCount ; i++ ) {
+			//     var combinationSum = 0;
+			//     for (var j=0 ; j < listSize ; j++) {
+			//       if (i & (1 << j)) { combinationSum += arr[j]; }
+			//     }
+			//     if (n === combinationSum) { return true; }
+			//   }
+			//   return false;
+			// }
 
-			function possibleSolution(){
-				let possibleNumbers = [];
-				let stars = state.stars;
+			// function possibleSolution(){
+			// 	let possibleNumbers = [];
+			// 	let stars = state.stars;
 		
 
-				for(let i = 1; i <= 9; i++){
-					if(state.usedNumbers.indexOf(i) < 0) {
-						possibleNumbers.push(i);
-					}
-				}
+			// 	for(let i = 1; i <= 9; i++){
+			// 		if(state.usedNumbers.indexOf(i) < 0) {
+			// 			possibleNumbers.push(i);
+			// 		}
+			// 	}
 
 
-				console.log('Used:',usedNumbers);
+			// 	return possibleCombinationSum(possibleNumbers, stars);
 
-				console.log('Possible:', possibleNumbers);
+			// }
 
-				console.log('Stars', stars);
-
-				return possibleCombinationSum(possibleNumbers, stars);
-
-			}
-
-			function updateDoneStatus(){
-				if(state.usedNumbers.length === 9){
-					return 'You Win!';
-				}
-				if(state.redraws === 0 && !possibleSolution()){
-					return 'Game Over!';
-				}
-				return null;
-			}
+			// function updateDoneStatus(){
+			// 	if(state.usedNumbers.length === 9){
+			// 		return 'You Win!';
+			// 	}
+			// 	if(state.redraws === 0 && !possibleSolution()){
+			// 		return 'Game Over!';
+			// 	}
+			// 	return null;
+			// }
 			
 			usedNumbers = state.usedNumbers.concat(state.selectedNumbers);
 			
@@ -137,9 +144,15 @@ export default function(state = INITIALSTATE, action){
 				selectedNumbers: [],
 				usedNumbers: usedNumbers,
 				correct: null,
-				stars: randomNumber(),
-				doneStatus: updateDoneStatus()
-				
+				stars: randomNumber()
+			};
+
+		case CHECK_GAME_OVER:
+		
+			return {
+				...state,
+				redraws: action.payload.redraws,
+				doneStatus: action.payload.status
 
 			};
 

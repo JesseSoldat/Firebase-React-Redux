@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
-
 import {SelectNumber} from '../../actions/play_nine_actions';
 
 
